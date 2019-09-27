@@ -40,9 +40,32 @@
             <p class="mb-5">Use your camera to capture a 3D portrait for
               <strong>Hologram Video Chat!</strong>! Holotalk provided by MatrixData</p>
             <div class="input-group input-group-newsletter">
-              <input type="email" class="form-control" placeholder="Upload your portrait..." aria-label="Upload your portrait..." aria-describedby="basic-addon">
-              <div class="input-group-append">
-                <button class="btn btn-warning btn-lg" type="button" button name="camera" onclick="webcam_capture.capture_face()"><i class="fas fa-camera"></i>smile!</button>
+                <p>
+                	{% with messages = get_flashed_messages() %}
+                	  {% if messages %}
+                		<ul class=flashes>
+                		{% for message in messages %}
+                		  <li>{{ message }}</li>
+                		{% endfor %}
+                		</ul>
+                	  {% endif %}
+                	{% endwith %}
+                </p>
+              <form method="post" action="/upload_check" enctype="multipart/form-data">
+                  <dl>
+              		<p class="mb-5">Please upload your portrait.
+              			<input type="file" name="file" autocomplete="off" required>
+              		</p>
+                  </dl>
+                  <p>
+              		<input class="btn btn-warning btn-sm" type="submit" value="Upload">
+              	</p>
+              </form>
+              <h2 class="mb-3">button not working</h2>
+              <div class="col-12 my-auto">
+                  <form method="POST" action="/generation" id="generate_form">
+                      <button class="btn btn-warning btn-lg" type="submit" form="generate_form"><i class="fas fa-globe-americas"></i>Generate!</button>
+                  </form>
               </div>
             </div>
           </div>
@@ -54,9 +77,9 @@
   <div class="social-icons">
     <ul class="list-unstyled text-center mb-0">
       <li class="list-unstyled-item">
-        <a href="#">
-          <i class="fas fa-camera"></i>
-        </a>
+          <form method="POST" action="/take_a_pic" id="camera">
+              <button class="btn btn-warning btn-lg" type="submit" form="camera"><i class="fas fa-camera"></i></button>
+          </form>
       </li>
     </ul>
   </div>

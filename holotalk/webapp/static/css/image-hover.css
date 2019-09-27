@@ -1,0 +1,43 @@
+body {
+    margin:0;
+    padding:0;
+    background:#3A07Af;
+    color:#3A07Af;
+}
+.container {
+    margin:100px auto;
+    width:600px
+}
+.imageBox {
+    position:relative;
+    overflow:hidden;
+}
+.imageBox img {
+    width:100%;
+    transition:.5s;
+}
+.textBox {
+    position:absolute;
+    top:0;
+    left:-100%;
+    width:100%;
+    height:100%;
+    background:rgba(255,58,7,175);
+    transition:.5s;
+}
+.textBox h1 {
+    margin:0;
+    padding:0;
+    position:absolute;
+    top:50%;
+    left:50%;
+    transform:translate(-50%,-50%);
+    color:#fff;
+    font-family:arial;
+}
+.imageBox:hover .textBox {
+    left:0;
+}
+.imageBox:hover img {
+    transform: scale(1.2);
+}
