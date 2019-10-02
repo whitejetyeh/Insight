@@ -25,11 +25,11 @@ for i in os.listdir(sub_source_folder):
     for ang in (0,10,20,30,40):
         if i.endswith('_%d.png' % ang):
             img = sym.feed_processor(i,ang,sub_source_folder)
-            # img.shape = (320,144) for vertically stacked imgs of (h,w) = (160,144)
+            # img.shape = (128,64) for vertically stacked imgs of (h,w) = (64,64)
             img = img/255. #rescale to [0,1]
             train_image.append(img)
 train_image = np.array(train_image)
-# train_image.shape = (N,320,144) for N imgs in sub_source_folder
+# train_image.shape = (N,128,64) for N imgs in sub_source_folder
 train_image = np.expand_dims(train_image,axis=3)#keras format needs a dimension for the color channel
 
 
@@ -39,27 +39,28 @@ for i in os.listdir(sub_source_folder):
     for ang in (0,10,20,30,40):
         if i.endswith('_%d.png' % ang):
             img = sym.feed_processor(i,ang,sub_source_folder)
-            # img.shape = (320,144) for vertically stacked imgs of (h,w) = (160,144)
+            # img.shape = (128,64) for vertically stacked imgs of (h,w) = (64,64)
             img = img/255. #rescale to [0,1]
             test_image.append(img)
 test_image = np.array(test_image)
-# test_image.shape = (N,320,144) for N imgs in sub_source_folder
+# train_image.shape = (N,128,64) for N imgs in sub_source_folder
 test_image = np.expand_dims(test_image,axis=3)#keras format needs a dimension for the color channel
 
 print('load_img takes time = ',time.time()-start_load)
 
 
 #loaded_model = load_model("small_HoloEncoder_C567DC765.h5")
-loaded_model = load_model("HoloEncoder_C567DDDC765.h5")
+loaded_model = load_model("HoloEncoder_C56789DDC98765.h5")
 loaded_model.summary()
 # model training
 start_training = time.time()
 loaded_model.fit(train_image, train_image,
                 epochs=50,
-                batch_size=32,
+                batch_size=8,
                 shuffle=True,
                 validation_data=(test_image, test_image))
 print('Training takes time = ',time.time()-start_training)
+loaded_model.save("HoloEncoder_C56789DDC98765.h5")
 
 # model validation
 decoded_imgs = loaded_model.predict(test_image[:4])
@@ -67,18 +68,20 @@ decoded_imgs = loaded_model.predict(decoded_imgs)
 decoded_imgs = loaded_model.predict(decoded_imgs)
 decoded_imgs = loaded_model.predict(decoded_imgs)
 
-plt.figure(figsize=(144,160))
+
+# plot comparison of test_image and its reconstruction
+plt.figure(figsize=(64,32))
 for i in range(4):
     #original
     ax = plt.subplot(2,4,i+1)
-    plt.imshow(test_image[i].reshape(160,72))  #reshape from flatten&grayscale
+    plt.imshow(test_image[i].reshape(128,64))  #reshape from flatten&grayscale
     plt.gray()
     ax.get_xaxis().set_visible(False)
     ax.get_yaxis().set_visible(False)
     #reconstruction
     ax = plt.subplot(2,4,i+1+4)
-    plt.imshow(decoded_imgs[i].reshape(160,72)) #reshape from flatten&grayscale
+    plt.imshow(decoded_imgs[i].reshape(128,64)) #reshape from flatten&grayscale
     plt.gray()
     ax.get_xaxis().set_visible(False)
     ax.get_yaxis().set_visible(False)
-plt.savefig('validation_img.png')
+plt.savefig('argvalidation_img.png')

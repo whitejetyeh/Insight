@@ -15,7 +15,7 @@ if cap.isOpened():
     if ret and frame is not None:
         print("pic taken successfully")
         #gray = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)
-        cv2.imwrite('./model_folder/photo.png', frame)
+        cv2.imwrite('./model_folder/photo.jpg', frame)
     else:
         print("pic not taken correctly")
 cv2.destroyAllWindows()

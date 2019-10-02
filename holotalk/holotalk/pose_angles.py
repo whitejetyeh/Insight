@@ -42,7 +42,7 @@ def landmark_extraction(image, cropscale=1.8, shape_predictor="shape_predictor_6
 		dw = (cropscale-1)*(rect.right()-rect.left()) #scaled width difference
 		dw = int(dw/2)
 		crop_gray =	gray[rect.top()-dh:rect.bottom()+dh,rect.left()-dw:rect.right()+dw]
-		cv2.imwrite('./model_folder/face%d_crop_dlib.png' % i, cv2.resize(crop_gray,(72,80)))
+		cv2.imwrite('./model_folder/face%d_crop_dlib.png' % i, cv2.resize(crop_gray,(64,64)))
 		# determine the facial landmarks for the face region, then
 		# convert the facial landmark (x, y)-coordinates to a NumPy
 		# array
@@ -106,6 +106,6 @@ def face_orientation(image_points, size):
     return (int(roll), int(pitch), int(yaw))
 
 #example of use
-face_vector =  landmark_extraction("./model_folder/photo.png")
+face_vector =  landmark_extraction("./model_folder/photo.jpg")
 print(face_vector)
 print(face_orientation(face_vector, [480, 640]))
