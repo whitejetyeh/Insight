@@ -1,27 +1,47 @@
-<link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
-<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
-<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-<!-- Custom styles for this template -->
-<link href="../static/css/image-hover.css" rel="stylesheet">
-<!------ Include the above in your HEAD tag ---------->
+<head>
+	<link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+	<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+	<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+	<!-- Custom styles for this template -->
+	<link href="../static/css/image-hover.css" rel="stylesheet">
+	<!------ Include the above in your HEAD tag ---------->
+	<style>
+	body	{
+		background-image: url("../static/img/background.jpg");
+	}
+	</style>
+</head>
+	<div class="row">
+		<div class="column">
+			<div class="container">
+				<div class="imageBox">
+					<img src="../static/img/photo.jpg">
+					<div class="textBox">
+				    	<h1>Uploaded image</h1>
+					</div>
+				</div>
+			</div>
+		</div>
 
-<div class="container">
-	<div class="imageBox">
-		<img src="../static/img/photo.jpg">
-		<div class="textBox">
-		    <h1>Uploaded image</h1>
+		<div class="column">
+			<div class="container">
+				<div class="imageBox">
+				   	<img src="../static/img/face0_crop.png">
+				   	<div class="textBox">
+				   	    <h1>Detected face</h1>
+				        <h2>(pitch,roll,yaw)=({{pitch}},{{roll}},{{yaw}})</h2>
+					</div>
+				</div>
+		    </div>
+		</div>
+
+		<div class="column">
+			<div class="container">
+				<div class="col-12 my-auto">
+					<form method="POST" action="/3dgeneration" id="3dgenerate_form">
+						<button class="btn btn-warning btn-lg" type="submit" form="3dgenerate_form"><i class="fas fa-globe-americas"></i>Generate 3D snapshots!</button>
+					</form>
+				</div>
+			</div>
 		</div>
 	</div>
-    	<div class="imageBox">
-    		<img src="../static/img/face0_crop.png">
-    		<div class="textBox">
-    		    <h1>Detected face</h1>
-                <h2>angle=(pitch,roll,yaw)</h2>
-    		</div>
-    	</div>
-		<div class="col-12 my-auto">
-			<form method="POST" action="/3dgeneration" id="3dgenerate_form">
-				<button class="btn btn-warning btn-lg" type="submit" form="3dgenerate_form"><i class="fas fa-globe-americas"></i>Generate 3D snapshots!</button>
-			</form>
-		</div>
-</div>

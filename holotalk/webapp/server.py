@@ -47,11 +47,11 @@ def upload_file():
 			return redirect(request.url)
 @app.route("/generation", methods=['POST'])
 def output1():
-	#(row, pitch, yaw) = lforr.sideview_generation()
-	return render_template('demo_page_1.html')
+	(roll, pitch, yaw) = lforr.sideview_generation()
+	return render_template('demo_page_1.html',roll=roll,pitch=pitch,yaw=yaw)
 @app.route("/3dgeneration", methods=['POST'])
 def output2():
-	return render_template('upload.html')
+	return render_template('demo_page_2.html')
 @app.route("/take_a_pic", methods=['POST'])
 def shoot():
 	webcam.take_pic()
