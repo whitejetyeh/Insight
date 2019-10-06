@@ -1,6 +1,6 @@
 '''
 Convolutional AutoEncoder
-Loading CAE for HoloTalk to reconstruct 3D protraits from face.png
+Loading CAE for HoloTalk to reconstruct 3D protraits from photo.jpg
 '''
 import LRsymmetrizer as sym
 from pose_angles import landmark_extraction, face_orientation

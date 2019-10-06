@@ -1,6 +1,7 @@
 '''
 Convolutional AutoEncoder
-HoloTalk's second proto type reconstructing 2D protraits
+This code serves to load a pretrained model and to train for more epochs with 
+selected data.
 '''
 import LRsymmetrizer as sym
 import tensorflow as tf

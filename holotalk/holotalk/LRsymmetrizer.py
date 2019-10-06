@@ -1,4 +1,3 @@
-
 '''
 Symmertrizer replicates the right half part of human face to the left half part.
 Wether the input yawing left or right, the feed_processor converts the input image
@@ -68,35 +67,3 @@ def output_processor(image,yaw):
         left_screen = 0*lower_img
         right_screen = cv2.flip(lower_img, 1)
     return front_screen, left_screen, right_screen
-'''
-ang = 0
-source_folder = os.getcwd()+'/tinygray'
-source_folder = source_folder+'/train'
-img = feed_processor('110621122042_%d.png' % ang, ang, source_folder)
-print(img.shape)
-print(len(img))
-
-plt.figure()
-plt.imshow(img)
-plt.gray()
-plt.show()
-
-front_screen, left_screen, right_screen = output_processor(img, ang)
-
-plot2=plt.figure(2)
-plt.subplot(1,3,1)
-plt.imshow(left_screen.reshape(64,64))
-plt.gray()
-plt.title('left')
-plt.subplot(1,3,2)
-plt.imshow(front_screen)
-plt.gray()
-plt.title('front')
-plt.subplot(1,3,3)
-plt.imshow(right_screen)
-plt.gray()
-plt.title('right')
-plot2.show()
-
-input()
-'''

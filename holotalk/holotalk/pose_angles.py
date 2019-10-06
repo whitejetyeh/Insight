@@ -12,7 +12,6 @@ skeletonization, and displaying Matplotlib images easier with OpenCV and Python.
 2. dlib’s pre-trained facial landmark detector
 http://dlib.net/files/shape_predictor_68_face_landmarks.dat.bz2
 '''
-#!!!!!!!!!! Need to add a flag if get_frontal_face_dector fails to detect!!!!!
 
 # import the necessary packages
 from imutils import face_utils
