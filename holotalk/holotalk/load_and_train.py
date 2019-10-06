@@ -1,6 +1,6 @@
 '''
 Convolutional AutoEncoder
-This code serves to load a pretrained model and to train for more epochs with 
+This code serves to load a pretrained model and to train for more epochs with
 selected data.
 '''
 import LRsymmetrizer as sym
@@ -50,7 +50,6 @@ test_image = np.expand_dims(test_image,axis=3)#keras format needs a dimension fo
 print('load_img takes time = ',time.time()-start_load)
 
 
-#loaded_model = load_model("small_HoloEncoder_C567DC765.h5")
 loaded_model = load_model("HoloEncoder_C56789DDC98765.h5")
 loaded_model.summary()
 # model training

@@ -21,12 +21,12 @@ def averaging(imgIn,imgOut,Rp=0.0):
     return average
 
 # facial pose estimation
-face_vector =  landmark_extraction('./model_folder/photo.jpg')
+face_vector =  landmark_extraction('./images/photo.jpg')
 roll,pitch,yaw = face_orientation(face_vector, [480, 640])
 yaw = -yaw#horizontal rotataion
 print(roll,pitch,yaw)
 source_img = 'face0_crop_dlib.png'
-source_folder = os.getcwd()+'/model_folder'
+source_folder = os.getcwd()+'/images'
 
 image = np.array([sym.feed_processor(source_img,yaw,source_folder,training=False)/255., ])
 # image.shape = (1,128,64) for vertically stacked imgs of (h,w) = (64,64)
