@@ -12,13 +12,13 @@ Holotalk model consists of three main parts. The first part is a face detector b
 ## Demo Video
 [![Webapp screen recording](/images/matrixdata_club.png)](https://youtu.be/IjoDcWxOqEs)
 ## Prerequistites
-By exeucuting "pip install -r requirements.txt" with requirements.txt in the holotalk folder, the required libraries will be installed. The use of virtural environment is highly recommended.
+By exeucuting "pip install -r requirements.txt" with [requirements.txt](/holotalk/requirements.txt) in the holotalk folder, the required libraries will be installed. The use of virtural environment is highly recommended.
 ## Image Processing
-The training images are first processed by blender python api. In data/blender_snapshot.py, I rendered snapshots of the [3D facial model](http://www.micc.unifi.it/masi/research/ffd/) spinned at various angles, and then I resized the grayscale snapshots to (width,height)=(64,64). Then, in LRsymmetrizer.py, feed_processor stacks up the frontal image with the corresponding side image. By the assumption of symmetric face from left to right, I stacked the front view with the left view when the head is facing left, and vice versa. The pair of images is the training data for the convolutional autoencoder.
+The training images are first processed by blender python api. In [blender_snapshot.py](/data/blender_snapshot.py), I rendered snapshots of the [3D facial model](http://www.micc.unifi.it/masi/research/ffd/) spinned at various angles, and then I resized the grayscale snapshots to (width,height)=(64,64). Then, in LRsymmetrizer.py, feed_processor stacks up the frontal image with the corresponding side image. By the assumption of symmetric face from left to right, I stacked the front view with the left view when the head is facing left, and vice versa. The pair of images is the training data for the convolutional autoencoder.
 ## How to run it
-* The trained model is loaded for reconstrcting the side views of a detected face in photo.jpg in **load_for_reconstruct.py**.
-* The Convolutional AutoEncoder is built in **holo_cae.py**; the encoder in this CAE has the following layers, 1. conv. with 32 channels + maxpooling 2. conv. with 64 channels + maxpooling 3. conv. with 128 channels + maxpooling 4. conv. with 256 channels + maxpooling 5. conv. with 512 channels + maxpooling 6. fully connected layer with 1024 nodes, and the decoder is simply the reverse of the encoder.
-* In **load_and_train.py**, the model is loaded for more training epochs.
+* The trained model is loaded for reconstrcting the side views of a detected face in photo.jpg in [**load_for_reconstruct.py**](/holotalk/holotalk/load_for_reconstruct.py).
+* The Convolutional AutoEncoder is built in [**holo_cae.py**](/holotalk/holotalk/holo_cae.py); the encoder in this CAE has the following layers, 1. conv. with 32 channels + maxpooling 2. conv. with 64 channels + maxpooling 3. conv. with 128 channels + maxpooling 4. conv. with 256 channels + maxpooling 5. conv. with 512 channels + maxpooling 6. fully connected layer with 1024 nodes, and the decoder is simply the reverse of the encoder.
+* In [**load_and_train.py**](/holotalk/holotalk/load_and_train.py), the model is loaded for more training epochs.
 
 ![HoloTalk demonstration](/images/model_pipeline.jpg)
 ## Author

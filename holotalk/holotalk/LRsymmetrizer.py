@@ -10,10 +10,16 @@ import numpy as np
 import matplotlib.pyplot as plt
 
 def angle_conv(yaw):
+    """
+    round angles to integers by ten
+    """
     yaw = np.rint(np.array(yaw)/10)*10
     return yaw.astype(int)
 
 def feed_processor(image,yaw,source_folder,training=True):
+    """
+    Horizontally stack the input image with corresponding sideview from a model
+    """
     #if training=False, user is reconstructing the side view from one model.
     img = cv2.imread(source_folder+'/'+image,0)# Using 0 to read image in grayscale mode
                              # cv2.imread output np.array(height,width,color channels)
@@ -48,6 +54,9 @@ def feed_processor(image,yaw,source_folder,training=True):
     return np.vstack((upper_img,lower_img))
 
 def output_processor(image,yaw):
+    """
+    Split the stacked up image reconstruction back into frontal/left/right views
+    """
     #image is the vertically stacked upper_img and lower_img.
     #input format = np.array(height,width)
     height = int(len(image)/2)

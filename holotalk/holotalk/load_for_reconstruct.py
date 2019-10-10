@@ -13,8 +13,11 @@ import numpy as np
 import matplotlib.pyplot as plt
 
 start_time = time.time()
-# averaging input and reconstruction
+
 def averaging(imgIn,imgOut,Rp=0.0):
+    """
+    averaging input and reconstruction
+    """
     # Rp = [0,1], ratio of propagating how much input to reconstruction
     # Rp = 1/0 for maximully/minimumaly passing
     average = (Rp*imgIn+(1-Rp)*imgOut)/2
